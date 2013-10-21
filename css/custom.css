@@ -1,0 +1,9 @@
+.thumb {
+	float:right;
+	width: 150px;
+	height: 125px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(/img/thumb_150x125.jpg) no-repeat;
+	}
