@@ -1,0 +1,54 @@
+---
+layout: post
+title: ! 'Javascript Practice: Closures'
+categories:
+- Javascript
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _social_aggregated_ids: a:2:{s:7:"twitter";a:0:{}s:8:"facebook";a:0:{}}
+  _social_aggregation_log: a:12:{i:1359703994;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359705861;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359708625;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359711048;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359714131;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359721858;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359731239;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359745843;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359774748;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359818168;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1359906149;O:8:"stdClass":1:{s:6:"manual";b:0;}i:1360081598;O:8:"stdClass":1:{s:6:"manual";b:0;}}
+  _social_notify: '1'
+---
+Javascript allows us to define functions inside other functions.
+
+The inner function has access to the variables of the outer function.
+
+A closure is formed when a reference to the inner function exists outside the outer function and we can execute the inner function after the outer function returns, at this point the inner function still has access to the variables of the outer function.
+<pre class="brush:js">var outer = function () {
+
+    var i = 0;
+
+    return function () {
+        alert(i++);
+    };
+};
+
+var closure = outer();
+
+closure(); // 0
+closure(); // 1
+closure(); // 2</pre>
+Same example as above except the inner function is not returned, it has a global reference.
+<pre class="brush:js">var closure;
+
+var outer = function () {
+
+    var i = 0;
+
+    closure =function () {
+        alert(i++);
+    };
+};
+
+outer();
+
+closure(); // 0
+closure(); // 1
+closure(); // 2</pre>
+In depth <a href="http://jibbering.com/faq/notes/closures/">article</a> on closures by Jim Ley.
+
+&nbsp;

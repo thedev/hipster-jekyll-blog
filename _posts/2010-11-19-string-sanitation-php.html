@@ -1,0 +1,40 @@
+---
+layout: post
+title: String sanitation - PHP
+categories:
+- PHP
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+  _wp_old_slug: ''
+---
+String sanitation is a must do for all PHP programmers.
+
+Personally I used a complex function that escaped everything that I thought would might cause problems. However this is not a very professional approach.
+
+Recently I found a debate on a forum regarding this aspect and one guy pointed out that for every situation:
+<ul>
+	<li>mysql calls
+<pre class="brush:php">mysql_real_escape_string()</pre>
+</li>
+	<li>html output
+<pre class="brush:php">htmlspecialchars()</pre>
+</li>
+	<li>regular expressions
+<pre class="brush:php">preg_quote()</pre>
+</li>
+	<li>use in an external command
+<pre class="brush:php">escapeshellarg()/escapeshellcmd()</pre>
+</li>
+</ul>
+a standard function should suffice.
+
+The point is that you need to sanitize your string accordingly to your requirements. And probably in most of the cases you can use a build in function.
+
+Also found this :)
+
+<a href="http://imgs.xkcd.com/comics/exploits_of_a_mom.png"><img class="alignnone" src="http://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="" width="666" height="205" /></a>

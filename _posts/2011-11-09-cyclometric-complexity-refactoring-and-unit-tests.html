@@ -1,0 +1,45 @@
+---
+layout: post
+title: Cyclometric Complexity, Refactoring and Unit Tests
+categories:
+- .Net
+- Tips
+- Tools
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+---
+I am currently working on a legacy project originally developed using  C# .NET 1.1 and Win Forms. Recently we updated this to .NET 4 and because we have some spare time we decided to do take a shot at improving the code base by refactoring some parts of the application.
+
+(Un)fortunately there are lots of places to do this and having in mind that I enjoy refactoring I will try to make the best of it.
+
+I decided to write Unit Tests for the sections that will be refactored to assure that nothing will be broken.
+
+Than I started thinking about where should I concentrate my efforts. I remembered about a code metric mentioned by a more experienced colleague called <em>Cyclometric Complexity</em> and googled it.<a href="http://www.thedev.ro/wp-content/uploads/2011/11/controlFlowGraph.jpg"><img class="alignright size-medium wp-image-145" title="controlFlowGraph" src="http://www.thedev.ro/wp-content/uploads/2011/11/controlFlowGraph-175x300.jpg" alt="" width="122" height="210" /></a>
+
+<em>Cyclometric Complexity</em> represents the number of linearly independent paths through a program's source code and it is computed using the <a title="Control flow graph" href="http://en.wikipedia.org/wiki/Control_flow_graph">control flow graph</a> of the program.
+
+How can this metric help?
+<ul>
+	<li>Limiting complexity during development</li>
+	<li>Implications for Software Testing</li>
+	<li>Cohesion</li>
+	<li>Correlation to number of defects</li>
+</ul>
+Check out the <a title="Cyclomatic complexity" href="http://en.wikipedia.org/wiki/Cyclomatic_complexity">wikipedia article</a> for a thorough description.
+
+After that I searched a (free) tool for analyzing my source code and found <a title="ccm homepage" href="http://www.blunck.info/ccm.html" target="_blank">ccm </a>(updated August 2011) developed by <a title="Jonas Blunck" href="http://www.blunck.info/index.html" target="_blank">Jonas Blunck</a>.
+<ul>
+	<li>Analyzes java-script, c, c++ and c# code (*.js, *.cs, *.c, *.cpp, *.h, *.hpp)</li>
+	<li>Works on both managed and unmanaged code</li>
+	<li>Command line version can output into xml, allowing easy integration with your build pipelines and Continuous Integration software</li>
+	<li>Visual Studio 2008/2010 integration</li>
+	<li>Command line version runs under mono on both Linux and Mac OS X</li>
+</ul>
+I installed this and found the most critical places that require my attention.
+
+Next I will write some tests for these functions and begin refactoring, perhaps even post some samples.

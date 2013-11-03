@@ -214,8 +214,7 @@ hr {
 footer {
   width:300px;
   float:left;
-  position:fixed;
-  bottom:50px;
+  clear:both;
 }
 
 @media print, screen and (max-width: 960px) {

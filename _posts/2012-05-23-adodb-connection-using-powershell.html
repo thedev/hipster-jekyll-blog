@@ -1,0 +1,16 @@
+---
+layout: post
+title: ADODB Connection using PowerShell
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  aktt_notify_twitter: 'no'
+  _edit_last: '1'
+---
+One fast way to test an adodb connection:
+<pre class="brush:shell">PS &gt; $obj = New-Object -ComObject ADODB.Connection
+PS &gt; $obj.Open("Connection String")</pre>
+&nbsp;

@@ -1,0 +1,103 @@
+---
+layout: post
+title: Inno Setup
+categories:
+- Inno Setup
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  aktt_notify_twitter: 'no'
+  _wp_old_slug: ''
+---
+Inno Setup is a <em>free</em> installer for Windows programs. (<a title="Inno Setup" href="http://www.jrsoftware.org/isinfo.php" target="_blank">official site</a>)
+
+During the last days I got to play with this installer while preparing a new release for a Visual Basic 6 application. This is one of my first encounters with installers and was quite impressed by this product.
+
+One of the features I found useful was support for <strong>Customizable setup types</strong>, e.g. Full, Minimal, Custom.
+
+For <strong>example</strong> I had to create a new wizard page where the application data folder location was displayed.
+
+Two possibilities:
+<ul>
+	<li>First install of application: display install location selected by user</li>
+	<li>Previous version of app installed: check registry (on installation important data is saved in registry)  and display existing data location</li>
+</ul>
+Example script for creating custom wizard page using Pascal  Scripting:<span style="font-family: Consolas, Monaco, 'Courier New', Courier, monospace; line-height: 18px; font-size: small; white-space: pre;"> </span>
+<pre class="brush:shell">[Setup]
+AppName=My Program
+AppVerName=My Program version 1.5
+DefaultDirName={pf}\My Program
+DefaultGroupName=My Program
+UninstallDisplayIcon={app}\MyProg.exe
+Compression=lzma
+SolidCompression=yes
+OutputDir=userdocs:Inno Setup Examples Output
+
+[Files]
+Source: "MyProg.exe"; DestDir: "{app}"
+Source: "Readme.txt"; DestDir: "{app}"; Flags: isreadme
+
+[Icons]
+Name: "{group}\My Program"; Filename: "{app}\MyProg.exe"
+
+[Code]
+ var
+  NewDataPath:string;
+
+procedure CreateDataPathWizardPage;
+var
+  Page: TWizardPage;
+  Lbl: TLabel;
+begin
+  Page := CreateCustomPage(wpSelectDir, 'DataPath', 'Data location is:');
+  Lbl := TLabel.Create(Page);
+
+  if RegQueryStringValue(HKEY_CURRENT_USER, 'Software\AppName\Data','DataPath', NewDataPath) then
+    begin
+      Lbl.Caption := NewDataPath
+    end
+  else
+    begin
+      Lbl.Caption := WizardDirValue() + '\Data\';
+    end
+
+  Lbl.Top := ScaleX(10);
+  Lbl.AutoSize := True;
+  Lbl.Parent := Page.Surface;
+
+end;
+
+procedure InitializeWizard();
+begin
+
+  { Custom wizard pages }
+   CreateDataPathWizardPage;
+
+end;</pre>
+<a href="http://www.thedev.ro/wp-content/uploads/2010/12/x.jpg"><img class="aligncenter size-full wp-image-69" title="Inno Setup installer" src="http://www.thedev.ro/wp-content/uploads/2010/12/x.jpg" alt="" width="694" height="817" /></a>
+
+Other key features of Inno Setup are:
+<ul>
+	<li>Support for <strong>all versions of Windows</strong> in use today: <strong>7</strong>, <strong>2008 R2</strong>, Vista, XP, 2008, 2003, 2000, Me, 98, 95, and NT 4.0. (No service packs are required.)</li>
+	<li>Extensive support for installation of <strong>64-bit applications</strong> on the 64-bit editions of Windows. Both the x64 and Itanium  architectures are supported. (On the Itanium architecture, Service Pack 1  or later is required on Windows Server 2003 to install in 64-bit mode.)</li>
+	<li>Supports creation of a <strong>single EXE</strong> to install your program for easy online distribution. Disk spanning is also supported.</li>
+	<li>Standard Windows 2000/XP-style wizard interface.</li>
+	<li><strong>Customizable setup types</strong>, e.g. Full, Minimal, Custom.</li>
+	<li>Complete <strong>uninstall</strong> capabilities.</li>
+	<li>Installation of files:
+Includes integrated support for "deflate", bzip2, and <strong>7-Zip LZMA/LZMA2 file compression</strong>.  The installer has the ability to compare file version info, replace  in-use files, use shared file counting, register DLL/OCX's and type  libraries, and install fonts.</li>
+	<li>Creation of shortcuts anywhere, including in the Start Menu and on the desktop.</li>
+	<li>Creation of registry and .INI entries.</li>
+	<li>Running other programs before, during or after install.</li>
+	<li>Support for <strong>multilingual</strong> installs, including right-to-left language support.</li>
+	<li>Support for passworded and encrypted installs.</li>
+	<li>Support for <strong>digitally signed</strong> installs and uninstalls.</li>
+	<li>Silent install and uninstall.</li>
+	<li><strong>Unicode</strong> installs. (Windows 2000/XP or later)</li>
+	<li>Integrated Pascal scripting engine option for advanced run-time install and uninstall customization.</li>
+	<li>Full <strong>source code</strong> is available (Borland Delphi 2.0-5.0 and 2009).</li>
+</ul>
+Worth a look

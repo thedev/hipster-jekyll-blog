@@ -6,5 +6,6 @@ layout: default
 <article> 
   <h2>{{ post.title }} </h2>
   <h4>{{ post.date | date_to_long_string }}</h4>
+  {{ post.content }}
  </article>
 {% endfor %}
