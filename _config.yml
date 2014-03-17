@@ -12,11 +12,11 @@ owner:
   avatar:         bio-photo.jpg
   email:          developer.lex@gmail.com
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        https://twitter.com/the_dev
-  facebook:       
+  twitter:        the_dev
+  facebook:       alex.ionica.public 
   github:         
-  stackexchange:  
-  linkedin:       
+  stackexchange:  http://stackexchange.com/users/222767/thedev  
+  linkedin:       ionicaalexandru
   instagram:      
   flickr:         
   tumblr:         
@@ -24,7 +24,7 @@ owner:
   google_plus:    
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:   
+google_analytics:  UA-19226711-1
 google_verify:      
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:         
