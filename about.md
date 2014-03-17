@@ -5,9 +5,9 @@ title: About
 tags: [developer, personal, blog]
 modified: 2014-03-04
 image:
-  feature: so-simple-sample-image-4.jpg
-  credit: Michael Rose
-  creditlink: http://mademistakes.com
+  feature: hintertux.jpg
+  credit: Alexandru Ionica
+  creditlink: http://thedev.ro
 ---
 Welcome to my blog.
 
