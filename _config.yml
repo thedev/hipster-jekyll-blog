@@ -4,7 +4,7 @@ description:      Personal blog by Alexandru Ionica
 disqus_shortname: thedevro
 search:           true
 # Change url to your domain. Leave localhost server or blank when working locally.
-url:              http://thedev.ro
+url:              http://www.thedev.ro
 
 # Owner/author information
 owner:
