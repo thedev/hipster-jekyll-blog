@@ -20,12 +20,12 @@ Goals:
 
 Basics
 
- snapshots not differences
- most operations are local => speed, can work offline
- integrity, SHA-1 checksums
- only adds data, dont loose anything
- 3 stages: commited, staged, modified
- working dir, staging area, git dir or repo
+- snapshots not differences
+- most operations are local => speed, can work offline
+- integrity, SHA-1 checksums
+- only adds data, dont loose anything
+- 3 stages: commited, staged, modified
+- working dir, staging area, git dir or repo
 
 
 
