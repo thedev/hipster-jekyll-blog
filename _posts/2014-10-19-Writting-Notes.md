@@ -1,3 +1,11 @@
+---
+layout: post
+title: Writting Notes
+comments: true
+tags:
+- Notes
+---
+
 Writting in the sciences
 
 What makes good writing?
