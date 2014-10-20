@@ -37,3 +37,15 @@ Hard for everyone, knowing this can help reduce the anxiety.
 Revision, nobody gets it perfect on the first try. Elegance happens during revision.
 Cut ruthlessy, dont become attached to your own words.
 Start taking risks in writting, put something a bit funny, provocative.
+
+- Is it easy to understand?
+- Is it enjoyable and interesting to read?
+- Is the sentence readable?
+- Is the sentence written to inform or to obscure?
+
+A lot of times in academic writting verbs are turned into nouns:
+
+selection, activations, reinfusion -> select, activate, reinfuse
+
+Aim is to write something easy to read and understand.
+
