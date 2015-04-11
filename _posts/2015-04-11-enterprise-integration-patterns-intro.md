@@ -5,8 +5,6 @@ description: ""
 category: notes
 tags: []
 ---
-{% include JB/setup %}
-
 Recently I've been involved in different integrations. 
 While doing research the book mentioned in the title came up often and I decided to have a look.
 Planning to take notes and a series of posts seems like a good way to do it. So here goes.
