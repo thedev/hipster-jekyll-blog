@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "EIP Solving integration using patterns"
+title: "EIP. Solving integration using patterns"
 description: ""
 category: 
 tags: ["Enterprise", "Integration","Patterns","Notes"]
