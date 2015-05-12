@@ -1,8 +1,8 @@
 #hpst theme
-title:            thedev.ro
+title:            thedev
 description:      personal blog
 disqus_shortname: thedevro
-reading_time:     true
+reading_time:     false
 words_per_minute: 200
 # When testing locally leave blank or use http://localhost:4000
 url: http://thedev.ro
@@ -14,7 +14,7 @@ owner:
   bio:            "Developer getting good at writing."
   email:          developer.lex@gmail.com
   # Social networking links used in footer. Update and remove as you like.
-  twitter:
+  twitter: the_dev
   facebook:
   github:
   stackexchange:
