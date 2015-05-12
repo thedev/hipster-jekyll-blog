@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "EIP. Integration Styles"
+title: "Integration Styles"
 description: ""
 category: 
 tags: ["Enterprise", "Integration","Patterns","Notes"]
