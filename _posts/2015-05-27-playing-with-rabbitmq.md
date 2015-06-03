@@ -17,7 +17,7 @@ After instalation broker needs to be startead by running:
 Management plugin (https://www.rabbitmq.com/management.html) provides a web interface at http://localhost:15672/#/
 
 
-## Work/Task Queue
+### Work/Task Queue
 
 Used to distribute tasks between multiple workers.
 Round robin dispatching
@@ -31,6 +31,7 @@ Fair dispatch
 A producer never send messages to queues in RabbitMQ, it sends them to an Exchange and the exchange sends the messages to a queue (bindings).
 
 Types of exchanges:
+
  - direct
  - topic 
  - headers
@@ -58,12 +59,13 @@ Bindings can take an extra routingKey parameter: `channel.QueueBind(queueName, "
 
 # Demo
 
-Web Api that pushes messages to RabbitMQ.
-Consumers: 
-- filter - validates the message and sends the message in the processing pipeline
-- consumer1 - c1 logic and based on the result moves the message to c2 or success queue
-- consumer2 - c2 logic and moves message to success queue or fail queue
-- use a [Smart Proxy](http://www.enterpriseintegrationpatterns.com/SmartProxy.html) or a [Control Bus](http://www.enterpriseintegrationpatterns.com/ControlBus.html) for system monitoring
+How a simple demo could look like:
+
+ - producer: web api which  pushes messages to RabbitMQ
+ - consumer0: validates the message and sends the message in the processing pipeline
+ - consumer1: c1 logic and based on the result moves the message to c2 or success queue
+ - consumer2: c2 logic and moves message to success queue or fail queue
+ - use a [Smart Proxy](http://www.enterpriseintegrationpatterns.com/SmartProxy.html) or a [Control Bus](http://www.enterpriseintegrationpatterns.com/ControlBus.html) for system monitoring
 
 
 
