@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false
 title: "Architecture Fundamentals"
 description: "SDD notes"
 category:
