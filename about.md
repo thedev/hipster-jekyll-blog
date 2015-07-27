@@ -26,8 +26,8 @@ For the last year I&#39;ve been leading a development team while trying to balan
 During spare time you can find me outdoors or in  a lake training for the next long distance swim. Also trying to improve my writing and turn blogging into a habit.
 
 ---
-## Technical Skills
-**Like:** c#, .net, javascript, architecture, tdd
+##Technical Skills
+**Like** c#, .net, javascript, architecture, tdd
 
 ---
 ##Experience
