@@ -42,4 +42,3 @@ I have built a career providing solid solutions in IT and I am currently looking
 
 [Reviews source](https://www.upwork.com/freelancers/~01449d5df37a9aba20)
 
-
