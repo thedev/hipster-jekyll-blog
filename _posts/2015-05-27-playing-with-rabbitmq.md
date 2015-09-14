@@ -1,20 +1,33 @@
 ---
 layout: post
-title: "Hands on with RabbitMQ"
+title: Hands on with RabbitMQ
 description: ""
-category: ["notes"]
-tags: ["notes", "messaging"]
+category: 
+  - notes
+tags: "notes,messaging"
+published: true
+headline: ""
+modified: ""
+categories: null
+imagefeature: ""
+mathjax: false
+featured: true
+comments: true
 ---
+
 
 
 # General notes
 Going through the RabbitMQ docs (.NET) and taking some notes.
 
-After instalation broker needs to be startead by running:
-`C:\Program Files (x86)\RabbitMQ Server\rabbitmq_server-3.5.1\sbin>rabbitmq-server.bat`
+After instalation broker needs to be startead by running
+
+{% highlight bash %}
+C:\Program Files (x86)\RabbitMQ Server\rabbitmq_server-3.5.1\sbin>rabbitmq-server.bat
+{% endhighlight %}
 
 
-Management plugin (https://www.rabbitmq.com/management.html) provides a web interface at http://localhost:15672/#/
+The [Management plugin](https://www.rabbitmq.com/management.html) provides a web interface available at http://localhost:15672/#/
 
 
 ### Work/Task Queue
@@ -152,9 +165,3 @@ class ConsoleConsumer
   }
 }
 {% endhighlight %}
-
-
-
-
-
-
