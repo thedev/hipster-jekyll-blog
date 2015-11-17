@@ -5,14 +5,15 @@ description: ""
 headline: ""
 modified: ""
 categories: 
-  - "null"
+  - personal
 tags: ""
 imagefeature: ""
 mathjax: false
 featured: false
-comments: false
+comments: true
 title: Devs and docs
 ---
+
 
 
 Whenever we create/setup/configure/design something new, we should document it. It sounds like a chore and nobody wants to do it, but we need it.
