@@ -1,10 +1,21 @@
 ---
 layout: post
-title: "Basic messaging concepts"
+title: Basic messaging concepts
 description: ""
-category: 
-tags: ["Enterprise", "Integration","Patterns","Notes"]
+category: null
+tags: "Enterprise,Integration,Patterns,Notes"
+published: true
+headline: ""
+modified: ""
+categories: 
+  - messaging
+  - integration
+imagefeature: ""
+mathjax: false
+featured: false
+comments: false
 ---
+
 
 ## Channels
 
