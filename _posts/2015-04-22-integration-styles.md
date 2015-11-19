@@ -1,10 +1,20 @@
 ---
 layout: post
-title: "Integration Styles"
+title: Integration Styles
 description: ""
 category: 
-tags: ["Enterprise", "Integration","Patterns","Notes"]
+  - messaging
+tags: "Enterprise,Integration,Patterns,Notes"
+published: true
+headline: ""
+modified: ""
+categories: null
+imagefeature: ""
+mathjax: false
+featured: false
+comments: false
 ---
+
 
 ## Aplication Integration Criteria
 
@@ -75,5 +85,3 @@ tags: ["Enterprise", "Integration","Patterns","Notes"]
 **con**
 
 - slower as RPC
-
-
