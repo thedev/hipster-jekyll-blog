@@ -3,7 +3,7 @@ layout: post
 title: Hands on with RabbitMQ
 description: ""
 category: 
-  - notes
+  - messaging
 tags: "notes,messaging"
 published: true
 headline: ""
@@ -14,6 +14,7 @@ mathjax: false
 featured: true
 comments: true
 ---
+
 
 
 
