@@ -1,10 +1,19 @@
 ---
 layout: post
-title: "Enterprise Integration Patterns. Intro"
+title: Enterprise Integration Patterns. Intro
 description: ""
-category: notes
-tags: []
+category: messaging
+tags: ""
+published: true
+headline: ""
+modified: ""
+categories: null
+imagefeature: ""
+mathjax: false
+featured: false
+comments: false
 ---
+
 Recently I've been involved in different integrations. 
 While doing research the book mentioned in the title came up often and I decided to have a look.
 Planning to take notes and a series of posts seems like a good way to do it. So here goes.
@@ -70,8 +79,3 @@ Implications
 - no single thread of execution. Multiple processes can increase performance but can also make debugging more difficult.
 - if results arrive via callbacks the caller must be able to process results while in the middle of other operations. 
 - sub-processes must be able to run independently
-
-
-
-
-
