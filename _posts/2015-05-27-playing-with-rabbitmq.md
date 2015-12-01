@@ -8,7 +8,8 @@ tags: "notes,messaging"
 published: true
 headline: ""
 modified: ""
-categories: null
+categories: 
+  - "null"
 imagefeature: ""
 mathjax: false
 featured: true
@@ -18,40 +19,37 @@ comments: true
 
 
 
-# General notes
-Going through the RabbitMQ docs (.NET) and taking some notes.
 
-After instalation broker needs to be startead by running
+# Setup
+
+The [Management plugin](https://www.rabbitmq.com/management.html) provides a web interface available at http://localhost:15672/#/
+
+**Command** - start server 
 
 {% highlight bash %}
 C:\Program Files (x86)\RabbitMQ Server\rabbitmq_server-3.5.1\sbin>rabbitmq-server.bat
 {% endhighlight %}
 
-
-The [Management plugin](https://www.rabbitmq.com/management.html) provides a web interface available at http://localhost:15672/#/
-
-
 ### Work/Task Queue
 
-Used to distribute tasks between multiple workers.
-Round robin dispatching
-Message acknowledgement
-Message durability
-Fair dispatch
+- Used to distribute tasks between multiple workers.
+- Round robin dispatching
+- Message acknowledgement
+- Message durability
+- Fair dispatch
 
 
 ### Exchanges
 
 A producer never send messages to queues in RabbitMQ, it sends them to an Exchange and the exchange sends the messages to a queue (bindings).
 
-Types of exchanges:
-
+Exchange types
  - direct
  - topic
  - headers
  - fanout
 
-rabbitmqctl list_exchanges
+Command: `rabbitmqctl list_exchanges`
 
 #### Direct exchanges
 
@@ -65,15 +63,13 @@ Direct exchanges and bindings does not allow us to do routing based on multiple 
 
 The binding is the relationship between the exchange and the queue.
 
-Define binding: `channel.QueueBind(queueName, "logs", "");`
-List bindings:`rabbitmqctl list_bindings`
-Bindings can take an extra routingKey parameter: `channel.QueueBind(queueName, "direct_logs", "black");`
+**Command** - define - `channel.QueueBind(queueName, "logs", "");`
 
+**Command**  - list - `rabbitmqctl list_bindings`
 
+**Command** - Bindings can take an extra routingKey parameter -  `channel.QueueBind(queueName, "direct_logs", "black");`
 
 # How a demo might look like
-
-How a simple demo could look like:
 
  - producer: web api which  pushes messages to RabbitMQ
  - consumer0: validates the message and sends the message in the processing pipeline
