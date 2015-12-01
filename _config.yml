@@ -42,6 +42,8 @@ links:
     url: /featured
   - title: Categories
     url: /categories
+  - title: Archive
+    url: /archive
   - title: About Alex
     url: /about
 
