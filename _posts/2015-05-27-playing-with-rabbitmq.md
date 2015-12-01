@@ -49,7 +49,12 @@ Exchange types
  - headers
  - fanout
 
-Command: `rabbitmqctl list_exchanges`
+**Command** 
+{% highlight bash %}
+rabbitmqctl list_exchanges
+{% endhighlight %}
+
+
 
 #### Direct exchanges
 
@@ -63,11 +68,22 @@ Direct exchanges and bindings does not allow us to do routing based on multiple 
 
 The binding is the relationship between the exchange and the queue.
 
-**Command** - define - `channel.QueueBind(queueName, "logs", "");`
+**Command** - define binding
+{% highlight bash %}
+channel.QueueBind(queueName, "logs", "");
+{% endhighlight %}
 
-**Command**  - list - `rabbitmqctl list_bindings`
+**Command**  - list bindings
+{% highlight bash %}
+rabbitmqctl list_bindings
+{% endhighlight %}
 
-**Command** - Bindings can take an extra routingKey parameter -  `channel.QueueBind(queueName, "direct_logs", "black");`
+
+**Command** - specify extra routingKey parameter
+{% highlight bash %}
+channel.QueueBind(queueName, "direct_logs", "black");
+{% endhighlight %}
+
 
 # How a demo might look like
 
