@@ -2,23 +2,17 @@
 layout: page
 permalink: /about/index.html
 title: Alexandru Ionica
-tags: [thedev]
+tags: 
+  - thedev
 imagefeature: fourseasons.jpg
 chart: true
+published: true
 ---
+
 
 I enjoy learning and constantly try to become better.
 
-
-## Work
-
-From full stack troublemaking,
-to defining application roadmaps and technology strategy,
-to enabling DevOps and engineering practices,
-to leading development teams,
-I have built a career providing solid solutions in IT and I am currently looking for the next challenge.
-
-### Reviews
+### What [others](https://www.upwork.com/freelancers/~01449d5df37a9aba20) say about me:
 
 > Excellent job! Alexandru overachieved the task. Great communicator.
 
@@ -40,5 +34,4 @@ I have built a career providing solid solutions in IT and I am currently looking
 
 > Alex is a hardworking top coder, solving the programming tasks with an ease! Thanks for a super solution!
 
-[Reviews source](https://www.upwork.com/freelancers/~01449d5df37a9aba20)
 
