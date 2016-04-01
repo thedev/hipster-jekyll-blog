@@ -38,13 +38,13 @@ links:
     url: /
     external: false
     icon: home
-  - title: Featured Posts
-    url: /featured
-  - title: Categories
-    url: /categories
+#  - title: Featured Posts
+#    url: /featured
+#  - title: Categories
+#    url: /categories
   - title: Archive
     url: /archive
-  - title: About Alex
+  - title: About
     url: /about
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
