@@ -102,6 +102,7 @@ networks:
   new:
   legacy:
 ```
+
 Considering the ammount of technologies that are used in the average project I think docker could prove very useful by using custom images and minimising the ammount of setup required. 
 
 I will probably also use Docker when I want to try out something new (alpha version of tech X) because it will allow me to this without the need to install it locally.
