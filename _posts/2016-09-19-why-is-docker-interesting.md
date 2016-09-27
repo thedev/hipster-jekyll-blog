@@ -1,16 +1,12 @@
 ---
 layout: post
-published: false
+published: true
 mathjax: false
 featured: false
-comments: false
+comments: true
 title: What is Docker?
 tags: docker tools
 description: What is Docker and why I think it can help.
-headline: ''
-modified: ''
-categories: ''
-imagefeature: ''
 ---
 When I first heard of Docker, it was already popular and it seemed to bring something new and shiny, something about containers and how you can containerize your app.
 
