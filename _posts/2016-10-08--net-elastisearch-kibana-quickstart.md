@@ -9,6 +9,10 @@ categories:
   - engineering
   - webdevelopment
 tags: 'tools, docker, kibana, elasticsearch'
+description: ''
+headline: ''
+modified: ''
+imagefeature: ''
 ---
 The ELK stack (Elasticsearch, Logstash, Kibana) is becoming more popular as a solution for centralised logging due to it's simplicity and powerfull features. It's easy to set up, integrate and use.
 
@@ -20,7 +24,8 @@ Docker is also a good candidate for production but there are out of the box solu
 
 A minimal local setup can be obtained using docker compose:
 
-```
+{% highlight yml %}
+
 version: "2.0"
 services:
   elasticsearch:
@@ -33,7 +38,8 @@ services:
       - 5601:5601
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
-```
+{% endhighlight  %}
+
 
 Please note specified ports.
 Once this is in place open the Docker Quickstart Terminal in the docker_compose.yml location and run:
