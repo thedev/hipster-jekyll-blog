@@ -1,10 +1,14 @@
 ---
 layout: post
-published: false
+published: true
 mathjax: false
 featured: false
-comments: false
+comments: true
 title: '.NET, Elastisearch & Kibana Quickstart'
+categories:
+  - engineering
+  - webdevelopment
+tags: 'tools, docker, kibana, elasticsearch'
 ---
 The ELK stack (Elasticsearch, Logstash, Kibana) is becoming more popular as a solution for centralised logging due to it's simplicity and powerfull features. It's easy to set up, integrate and use.
 
@@ -69,4 +73,3 @@ This setup allows you to try Kibana and Elasticsearch and will get you thinking 
 - How do we handle elasticsearch cluster failover?
 - What type of dashboards would help?
 - Does it make sense to add Logstash into the equation ?
-
