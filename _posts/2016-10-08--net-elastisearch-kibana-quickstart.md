@@ -8,11 +8,7 @@ title: Elastisearch & Kibana Quickstart
 categories:
   - engineering
   - webdevelopment
-tags: 'tools, docker, kibana, elasticsearch'
-description: ''
-headline: ''
-modified: ''
-imagefeature: ''
+tags: tools docker kibana elasticsearch
 ---
 The ELK stack (Elasticsearch, Logstash, Kibana) is becoming more popular as a solution for centralised logging due to it's simplicity and powerfull features. It's easy to set up, integrate and use.
 
