@@ -4,7 +4,7 @@ published: true
 mathjax: false
 featured: false
 comments: true
-title: '.NET, Elastisearch & Kibana Quickstart'
+title: Elastisearch & Kibana Quickstart
 categories:
   - engineering
   - webdevelopment
@@ -69,6 +69,7 @@ NLog provides a [custom elsticsearch target](https://github.com/ReactiveMarkets/
 Install NLog custom target:  `Install-Package NLog.Targets.ElasticSearch`
 
 This setup allows you to try Kibana and Elasticsearch and will get you thinking about the next steps.
+
 - What is the logging strategy ? Should we use content indetifiers?
 - How do we handle elasticsearch cluster failover?
 - What type of dashboards would help?
