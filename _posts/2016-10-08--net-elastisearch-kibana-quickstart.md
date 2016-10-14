@@ -1,10 +1,14 @@
 ---
 layout: post
-published: false
+published: true
 mathjax: false
 featured: false
-comments: false
-title: '.NET, Elastisearch & Kibana Quickstart'
+comments: true
+title: Elastisearch & Kibana Quickstart
+categories:
+  - engineering
+  - webdevelopment
+tags: tools docker kibana elasticsearch
 ---
 The ELK stack (Elasticsearch, Logstash, Kibana) is becoming more popular as a solution for centralised logging due to it's simplicity and powerfull features. It's easy to set up, integrate and use.
 
@@ -16,7 +20,8 @@ Docker is also a good candidate for production but there are out of the box solu
 
 A minimal local setup can be obtained using docker compose:
 
-```
+{% highlight yml %}
+
 version: "2.0"
 services:
   elasticsearch:
@@ -29,7 +34,8 @@ services:
       - 5601:5601
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
-```
+{% endhighlight  %}
+
 
 Please note specified ports.
 Once this is in place open the Docker Quickstart Terminal in the docker_compose.yml location and run:
@@ -65,8 +71,8 @@ NLog provides a [custom elsticsearch target](https://github.com/ReactiveMarkets/
 Install NLog custom target:  `Install-Package NLog.Targets.ElasticSearch`
 
 This setup allows you to try Kibana and Elasticsearch and will get you thinking about the next steps.
+
 - What is the logging strategy ? Should we use content indetifiers?
 - How do we handle elasticsearch cluster failover?
 - What type of dashboards would help?
 - Does it make sense to add Logstash into the equation ?
-

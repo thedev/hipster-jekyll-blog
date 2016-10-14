@@ -5,8 +5,12 @@ mathjax: false
 featured: false
 comments: true
 title: What is Docker?
-tags: docker tools
+tags: 'docker, tools'
 description: What is Docker and why I think it can help.
+categories:
+  - engineering
+  - interesting
+  - webdevelopment
 ---
 When I first heard of Docker, it was already popular and it seemed to bring something new and shiny, something about containers and how you can containerize your app.
 
