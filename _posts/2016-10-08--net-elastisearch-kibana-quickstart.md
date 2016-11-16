@@ -20,7 +20,7 @@ Docker is also a good candidate for production but there are out of the box solu
 
 A minimal local setup can be obtained using docker compose:
 
-{% highlight yml %}
+{% highlight yaml %}
 
 version: "2.0"
 services:
