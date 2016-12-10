@@ -1,16 +1,15 @@
 ---
 layout: post
-published: false
+published: true
 mathjax: false
-featured: false
-comments: false
+featured: true
+comments: true
 title: 'ELK - you like it and want to use it ? '
 description: Some thoughts on using ELK in a real application
-tags: elk
-headline: ''
-modified: ''
-categories: ''
-imagefeature: ''
+tags: 'elk, scalability'
+categories:
+  - webdevelopment
+  - Devops
 ---
 Starting out with ELK is pretty straightforward and it usually highlights the benefits of a centralised loggic solution. Once you see this you will want to consider a few of the implications of running ELK in a scalable production environment. Here are some of my finding on this.
 
