@@ -27,7 +27,7 @@ The NLog target seems to handle this well, it will not block your application wh
 
 Here is a sample NLog.config using an Elasticsearch target.
 
-```
+```xml
 
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
