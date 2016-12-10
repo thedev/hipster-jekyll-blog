@@ -7,10 +7,13 @@ comments: false
 title: 'ELK - you like it and want to use it ? '
 description: Some thoughts on using ELK in a real application
 tags: elk
+headline: ''
+modified: ''
+categories: ''
+imagefeature: ''
 ---
-Starting out with ELK is pretty straightforward and it usually highlights the benefits of a centralised loggic solution. Once you see this you will want to consider a few of the implications of running ELK in a scalable production environment.
+Starting out with ELK is pretty straightforward and it usually highlights the benefits of a centralised loggic solution. Once you see this you will want to consider a few of the implications of running ELK in a scalable production environment. Here are some of my finding on this.
 
-Here's what I tried.
 
 ## We can forward logs directly to elasticsearch
 
@@ -80,67 +83,90 @@ http://stackoverflow.com/questions/40807162/application-logging-with-elk-stack/4
 
 ### Data integrity
 
-Beside application perfromance, another aspect is data integrity, more exactly not loosing logs when ES is down. This can be prevented by using another target to store logs in a different location, maybe a file.
-The FallBackGroup target can also be used, details here https://github.com/nlog/NLog/wiki/FallbackGroup-target.
+Beside application perfromance, another aspect is data integrity, more exactly not loosing logs when ES is down.
+With NLog you can prevent this by using an additional target to store logs in a different or a  [FallBackGroup target](https://github.com/nlog/NLog/wiki/FallbackGroup-target).
 
 
 
 
 ### Data quality
 
-If you want a real time web dashboard to access logs this can be a good solution, but if you want to take advantage of all the visualisations Kibana provides you will need to structure and process the logs you send.
-The default option with ELK for log processing is Logstash.
+If you want to take advantage the visualisations Kibana provides you will need to structure and process the logs you send. 
+With applicaton logs, where you have control, this needs to be handled by having a well defined logging strategy and structured data.
+For logs where you don't have control, the default option with ELK for log processing is Logstash.
 
 ## Why use Logstash
 
-Processing logs
-
-With application logs you have a level of control over the format or you can use structured logging to help with data analysis. In other cases you will want to analyse logs from external systems, let's say ELB, and at that point log processing (Logstash) will be required.
-
-
-Logstash
-
 So it helps with logs processing, but what exactly does that mean ?
+For example, an ELKB log entry is not ideal for data analysis, it's just a long text message which needs to be broken down in different parts. This is where Logstash filters come in.
 
-Sample ELB log entry:
+The `grok` filter below will parse the ELB log into a more usefull document.
 
-This type of log entry is not ideal for data analysis, the long text message needs to be broken down in different parts. This is where Logstash filters come in.
+```                                                                        
+input {
+  tcp {
+    port => 5000
+  }
+}
 
-The grok filter can be used to parse the log message.
+## Add your filters / logstash plugins configuration here
 
-Sample Logstash config:
-***
+filter {
+  grok {
+    match => [ "message", "%{TIMESTAMP_ISO8601:timestamp} %{NOTSPACE:elb} %{IP:clientip}:%{INT:clientport:int} (?:(%{IP:backendip}:?:%{INT:backendport:int})|-) %{NUMBER:request_processing_time:float} %{NUMBER:backend_processing_time:float} %{NUMBER:response_processing_time:float} (?:-|%{INT:elb_status_code:int}) (?:-|%{INT:backend_status_code:int}) %{INT:received_bytes:int} %{INT:sent_bytes:int} \"%{ELB_REQUEST_LINE}\" \"(?:-|%{DATA:user_agent})\" (?:-|%{NOTSPACE:ssl_cipher}) (?:-|%{NOTSPACE:ssl_protocol})" ]
+  }
+  date {
+    match => [ "timestamp", "ISO8601" ]
+  }
+# don't keep duplicate data (besides request internals since these may be helpful for queries)
+  mutate {
+    remove_field => [ "message", "timestamp" ]
+  }
+# these will ensure we have a valid index even if there are upper case letters in elb names
+  mutate {
+    add_field => { "indexname" => "elb-%{elb}" }
+  }
+  mutate {
+    lowercase => [ "indexname" ]
+  }
+}
 
+output {
+  elasticsearch {
+    hosts => "ELASTICSEARCHURL"
+    index   => "%{indexname}-%{+YYYY.MM.dd}" 
+  }
+}
+
+```
+
+You can see 3 main sections `input`, `filters` and `output` which support different plugins and operations. Full documentation available [here](https://www.elastic.co/guide/en/logstash/current/index.html).
+
+Beside helping with the log processing, there is another important benefit of using logstash.
+The responsability for shipping logs can be removed from the application.
+
+Let's imagine we have an app running in 20 different servers and we want all the logs in Kibana but we don't want the application to send the logs. You can use [Filebeat](https://www.elastic.co/guide/en/beats/filebeat/5.1/filebeat-getting-started.html) or [rsyslog](http://www.rsyslog.com/) for log shipping and Logstash for processing.  
 
 
 ## Logstash at scale
 
-
-Here is a good article with a few different options:
-https://www.elastic.co/guide/en/logstash/current/deploying-and-scaling.html
+While Logstash brings usefull capabilities it also comes with management overhead at scale. The following article, ([https://www.elastic.co/guide/en/logstash/current/deploying-and-scaling.html](https://www.elastic.co/guide/en/logstash/current/deploying-and-scaling.html)), ilustrates how a scalable logstash setup looks.
 
 
+## How about Elasticsearch?
 
+For playing around with Kibana I've used Elasticsearch as a service from AWS with a single node.
+For a production environment, same as Logstash, this will need a more advanced setup with a multi node cluster. 
 
-## Elasticsearch cluster availability considerations
+The master node is responsible for cluster management and limiting the writes to this mode is a good ideea.
 
-I've used Elasticsearch as a service from AWS with a single node and for a production environment this needs to be a multi node cluster. The master node is responsible for cluster management and limiting the writes to this mode is a good ideea.
+While AWS takes care of a lot of the complexity that comes with managing ES but we will still need to manage the data. For this AWS provides automatic and manual snapshots that can be restored but this are high level backups and more related to the infrastucture than the data.
 
-AWS takes care of a lot of the complexity that comes with managing ES but we will still need to manage the data.
-AWS provides automatic and manual snapshots that can be restored but this are high level backups and more related to the infrastucture than the data.
-To back up the data and clean old indexes we can schedule jobs that work with the elasticsearch APIs.
-
-eg:
-
-
+To manage cluster data and clean old indexes we can schedule jobs against the [indices api](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices.html) 
 
 
 ## Managed ELK services
 
+Above I've just listed a few considerations about scale, the list is nowhere close to complete and it reveals the amount of complexity that comes with scale. Like in most cases with online tutorials the road from tutorial to operational is long.
 
-
-
-
-
-
-
+You can use services like http://logz.io/, https://www.splunk.com/, https://www.datadoghq.com/ to deal with this complexity for you.
