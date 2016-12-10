@@ -18,24 +18,75 @@ I used NLog and a custom elasticsearch target to get things going. This allows y
 In this scenario the application is responsible of sending logs directly to Elasticsearch and we have coupling between the application and the ES cluser. 
 
 
-Will the ES cluster availability impact application performance?
+### Will the ES cluster availability impact application performance?
 
 It depends on the actual implementation for the log sending, this must be non-blocking.
 The NLog target seems to handle this well, it will not block your application when it can not deliver logs, provides configuration for exception management and a failover mechanism.
 
-// config here
 
-Data integrity
+Here is a sample NLog.config using an Elasticsearch target.
+```
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="nlog"
+             type="NLog.Config.ConfigSectionHandler, NLog"/>
+  </configSections>
+  <nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd"
+        autoReload="true"
+        throwExceptions="false"
+        internalLogLevel="Off"
+        internalLogFile="c:\temp\nlog-internal.log">
 
-Beside application perfromance, another aspect is data integrity, more exactly not loosing logs when ES is down.
-This can be prevented by using another target to store logs in a different location, maybe a file.
-The FallBackGroup target can also be used, details here https://github.com/nlog/NLog/wiki/FallbackGroup-target.
+    <targets>
+      <target name="elastic"
+              xsi:type="BufferingWrapper"
+              flushTimeout="5000">
+        <target xsi:type="ElasticSearch"
+                layout="${logger} | ${threadid} | ${message}"
+                index="logstash-${date:format=yyyy.MM.dd}"
+                includeAllProperties="true"
+                uri="ES-URL-HERE">
 
-Here is a link to a SO discussion about the NLog elasticsearch target:
+          <field name="user"
+                 layout="${windows-identity:userName=True:domain=False}"/>
+          <field name="host"
+                 layout="${machinename}"/>
+        </target>
+      </target>
+    </targets>
+    <rules>
+      <logger name="*"
+              minlevel="Debug"
+              writeTo="elastic" />
+    </rules>
+  </nlog>
+</configuration>
+```
+
+To make sure the target doesn't break the application make sure you
+
+- Use the latest stable version of NLog (4.3)
+- Don't enable throwExceptions (disabled by default)
+- If you enable async, the errors are written to the target in another thread, so it could not break your app.
+- Also when using async, check the overflow and queue settings
+
+You can also take a look at a helpful answer on my SO question:
 http://stackoverflow.com/questions/40807162/application-logging-with-elk-stack/40810299#40810299
 
 
-Data quality
+
+### Data integrity
+
+Beside application perfromance, another aspect is data integrity, more exactly not loosing logs when ES is down. This can be prevented by using another target to store logs in a different location, maybe a file.
+The FallBackGroup target can also be used, details here https://github.com/nlog/NLog/wiki/FallbackGroup-target.
+
+
+
+
+### Data quality
 
 If you want a real time web dashboard to access logs this can be a good solution, but if you want to take advantage of all the visualisations Kibana provides you will need to structure and process the logs you send.
 The default option with ELK for log processing is Logstash.
