@@ -25,9 +25,10 @@ In this scenario the application is responsible of sending logs directly to Elas
 It depends on the actual implementation for the log sending, this must be non-blocking.
 The NLog target seems to handle this well, it will not block your application when it can not deliver logs, provides configuration for exception management and a failover mechanism.
 
-
 Here is a sample NLog.config using an Elasticsearch target.
+
 ```
+
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
@@ -66,6 +67,7 @@ Here is a sample NLog.config using an Elasticsearch target.
     </rules>
   </nlog>
 </configuration>
+
 ```
 
 To make sure the target doesn't break the application make sure you
@@ -102,6 +104,7 @@ For example, an ELKB log entry is not ideal for data analysis, it's just a long 
 The `grok` filter below will parse the ELB log into a more usefull document.
 
 ```                                                                        
+
 input {
   tcp {
     port => 5000
